@@ -4,8 +4,8 @@ body {
 }
 
 .dark {
-    --color-background: #1F2023;
-    --color-foreground: #EFEFEF;
+  --color-background: #1F2023;
+  --color-foreground: #EFEFEF;
 }
 
 .App {
@@ -86,10 +86,150 @@ body {
 
 .color-toggle:checked:after {
   transform: translateX(-100%);
-  content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="%23FAEA35" fill="%23FAEA35" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>  <circle cx="12" cy="12" r="4"></circle>  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path></svg>'); 
-    color: rgb(255, 255, 255);
+  content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="%23FAEA35" fill="%23FAEA35" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>  <circle cx="12" cy="12" r="4"></circle>  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path></svg>');
+  color: rgb(255, 255, 255);
 }
 
+/**************** LOADING PAGE ****************/
+body {
+  height: 100%;
+  overflow-y: hidden;
+  animation: allow-scroll 0s 12s forwards;
+}
+
+@keyframes allow-scroll {
+  from {
+    height: 100%;
+    overflow-y: hidden;
+  }
+
+  to {
+    height: auto;
+    overflow-y: auto;
+  }
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+}
+
+.loader.hide {
+  display: none;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-vertical-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.status-svg {
+  display: block;
+  margin: auto 8px;
+  fill: red;
+}
+
+.status-svg.online {
+  fill: green;
+}
+
+.terminal-text {
+  text-align: left;
+}
+
+.terminal-input {
+  margin-left: 0.5em;
+  font-family: 'Courier New', monospace;
+}
+
+.loading-bar {
+  height: 10px;
+  margin: 1em auto;
+  background-color: rgb(239, 239, 239);
+  border-radius: 5px;
+}
+
+.loading-animation {
+  width: 0%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: rgb(9, 132, 227);
+  transition: width 2s ease-in
+}
+
+.loading-animation.start {
+  width: 100%;
+}
+
+.line {
+  opacity: 0;
+  transition: opacity 0s linear 0.5s;
+}
+
+.line.start {
+  opacity: 1;
+}
+
+.finish-loading-bar {
+  position: absolute;
+  left: 50%;
+  width: 0%;
+  height: 10px;
+  margin-top: -10px;
+  background-color: rgb(9, 132, 227);
+  border-radius: 5px;
+  transition: all 1.5s ease-in;
+}
+
+.finish-loading-bar.start {
+  width: 100%;
+  left: 0
+}
+
+.loading-top,
+.loading-bottom {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  background-color: white;
+}
+
+.loading-top {
+  bottom: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: bottom 2s ease-in-out;
+}
+
+.loading-top.start {
+  bottom: 100%;
+}
+
+.loading-bottom {
+  top: 50%;
+  transition: top 2s ease-in-out;
+}
+
+.loading-bottom.start {
+  top: 100%;
+}
+
+/**************** OTHER PAGES ****************/
 .about-container {
   padding: 6rem 9rem 16rem;
   color: white;
@@ -125,7 +265,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   transition: background-position 2s ease-out;
-
 }
 
 .website-preview:hover .bg-image {

@@ -4,6 +4,7 @@ import { ColorToggle } from '../pageComponents/Navigation';
 
 export const Navigation = () => {
 
+  //TODO: inlcude logo
   return (
     <>
     <Container>

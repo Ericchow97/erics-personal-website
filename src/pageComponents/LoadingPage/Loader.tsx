@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// TODO: Re-enable body selector in CSS
 export const Loader = () => {
   const [inputText, changeInputText] = useState('')
 
@@ -31,8 +32,17 @@ export const Loader = () => {
       setTimeout(() => {
         document.querySelector(".loading-top")?.classList.add('start')
         document.querySelector(".loading-bottom")?.classList.add('start')
-        setTimeout(() => document.querySelector(".loader")?.classList.add('hide'), 2000)
+        setTimeout(() => {
+          document.querySelector(".loader")?.classList.add('hide')
+          document.querySelector("body")!.className ="showBody";
+          
+        }, 2000)
       }, 8000)
+
+      setTimeout(() => {
+        document.querySelector("#ArmWave")?.classList.add('start')
+        setTimeout(() => document.querySelector("#ArmWave")?.classList.remove('start'), 6000)
+      }, 10000)
     }
   }
 

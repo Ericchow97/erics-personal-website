@@ -1,6 +1,11 @@
 body {
   --color-background: #FAFAFA;
   --color-foreground: #1F2023;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
 }
 
 .dark {
@@ -8,9 +13,13 @@ body {
   --color-foreground: #EFEFEF;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* TODO: Set background-color for relevant sections */
 .App {
   text-align: center;
-  background-color: var(--color-background);
   color: var(--color-foreground)
 }
 
@@ -91,22 +100,14 @@ body {
 }
 
 /**************** LOADING PAGE ****************/
-body {
+/* body {
   height: 100%;
   overflow-y: hidden;
-  animation: allow-scroll 0s 12s forwards;
-}
+} */
 
-@keyframes allow-scroll {
-  from {
-    height: 100%;
-    overflow-y: hidden;
-  }
-
-  to {
-    height: auto;
-    overflow-y: auto;
-  }
+body.showBody {
+  height: auto;
+  overflow-y: auto;
 }
 
 .loader {
@@ -227,6 +228,94 @@ body {
 
 .loading-bottom.start {
   top: 100%;
+}
+
+/**************** GENERAL CSS ****************/
+.section-full {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/**************** HOME CSS ****************/
+.home-container {
+  margin: 3rem auto;
+  display: flex;
+  gap: 24px;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.text-container * {
+  width: 100%;
+  text-align: left;
+}
+
+.intro-text {
+  font-size: 4rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+}
+
+.anchor-button {
+  background-color: rgb(9, 132, 227);
+  color: #fff;
+  height: 36px;
+  border-radius: 32px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 18px;
+}
+
+.anchor-button:hover {
+  background-color: #1c7ed6
+}
+
+#home-canvas {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+}
+/**************** AVATAR ANIMATION ****************/
+
+.arm-wave {
+  transform: translateY(100%);
+  transition: transform 1s ease-in-out;
+}
+
+.arm-wave.start {
+  animation: armWave 2s ease-in-out 2 1s;
+  transform: translateY(0%);
+  transition: transform 1s ease-in-out;
+}
+
+@keyframes armWave {
+  0% {
+    transform: rotate(0deg);
+    transform-origin: 100%;
+  }
+  50% {
+    transform: rotate(5deg);
+    transform-origin: 100%;
+  }
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 100%;
+  }
 }
 
 /**************** OTHER PAGES ****************/

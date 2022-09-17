@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
-import { Home, About, Navigation, Projects, Contact, LoadingPage } from './pages'
+import { Home, About, Projects, Contact, LoadingPage } from './pages'
 
 
 //TODO: Mobile friendlty
 const App = () => {
   return (
     <div className="App">
-      <Navigation />
-      <LoadingPage />
+      {/* <LoadingPage /> */}
       <Home />
       <About />
       <Projects />

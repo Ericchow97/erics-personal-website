@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { Container } from '@mantine/core';
-import  {ReactComponent as Avatar} from '../static/Home/avatar.svg';
+import { ReactComponent as Avatar } from '../static/Home/avatar.svg';
 import { Tendrils } from '../pageComponents/Home/Tendrils';
+import { Navigation } from '../pageComponents/Navigation/Navigation';
 
 export const Home = () => {
   const canvas = useRef<HTMLCanvasElement>(null)
@@ -58,9 +59,11 @@ export const Home = () => {
   }
 
   //TODO: change from front end to full stack once backend is implemented
+  //TODO: add resume somewhere
   return (
     <>
-      <Container className='section-full' onMouseMove={(event) => handleMouseMove(canvas.current, event)}>
+      <Navigation />
+      <Container id="Home" className='section-full' onMouseMove={(event) => handleMouseMove(canvas.current, event)}>
         <Container className='home-container' onMouseOver={handleMouseOver} onTouchStart={handleMouseOver}>
           <div>
             <Avatar />

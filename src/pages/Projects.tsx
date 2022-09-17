@@ -5,7 +5,7 @@ import { ProjectComponent } from '../pageComponents/Projects';
 export const Projects = () => {
   return (
     <>
-      <Container size="sm" px="xs">
+      <Container id="Projects" size="sm" px="xs">
         <div className='projects-container'>
           <Text size='xl' weight={700}>Previous Projects</Text>
           <Space h="md" />

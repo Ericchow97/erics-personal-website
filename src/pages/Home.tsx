@@ -1,15 +1,19 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import { Container } from '@mantine/core';
 import { ReactComponent as Avatar } from '../static/Home/avatar.svg';
 import { Tendrils } from '../pageComponents/Home/Tendrils';
 import { Navigation } from '../pageComponents/Navigation/Navigation';
+import { ThemeDarkContext } from '../pageComponents/General/ThemeDarkContext';
 
 export const Home = () => {
   const canvas = useRef<HTMLCanvasElement>(null)
   const mousePosition: [number, number] = [0, 0]
   const tendrils = Array.from(Array(50), (_, i) => new Tendrils(0.45 + 0.025 * (i / 50), mousePosition));
 
+  const darkContext = useContext(ThemeDarkContext)
+
   //resize canvas to window size once defined
+  //TODO: Resize canvas if window gets resized
   useEffect(() => {
     const ctx = canvas.current!.getContext('2d')
     if (!ctx) return
@@ -21,9 +25,16 @@ export const Home = () => {
   useEffect(() => {
     const draw = (ctx: CanvasRenderingContext2D) => {
       if (!canvas.current) return
-      ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+
+      // define background based on current background context
+      if (darkContext.isDark) {
+        ctx.fillStyle = "#1f2023"
+        ctx.fillRect(0, 0, canvas.current.width, canvas.current.height);
+      } else ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+
+      // define stroke style
       ctx.strokeStyle = 'hsla(206, 77%, 56%,0.25)';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 2;
 
       for (let i = 0, tendril; i < 30; i++) {
         tendril = tendrils[i];
@@ -37,7 +48,7 @@ export const Home = () => {
     const drawInterval = setInterval(() => draw(ctx), 20)
 
     return () => clearInterval(drawInterval)
-  }, [canvas, mousePosition, tendrils])
+  }, [canvas, mousePosition, tendrils, darkContext])
 
   // mouse move for canvas animation
   const handleMouseMove = (canvas: HTMLCanvasElement | null, e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,6 +71,8 @@ export const Home = () => {
 
   //TODO: change from front end to full stack once backend is implemented
   //TODO: add resume somewhere
+  //TODO: make mobile responsive
+
   return (
     <>
       <Navigation />

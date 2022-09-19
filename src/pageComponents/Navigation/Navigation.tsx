@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Burger, Box } from '@mantine/core';
 import { NavigationButton } from './NavigationButton';
+import { ColorToggle } from './ColorToggle';
 
 
 export const Navigation = () => {
@@ -21,11 +22,14 @@ export const Navigation = () => {
         />
       </div>
       <div className='side-nav-bar'>
-        <Box sx={{ maxWidth: 250, width: "100%", borderTop:"rgba(0, 0, 0, 0.2) solid 1px"}}>
-          <NavigationButton text='Home' />
-          <NavigationButton text='About' />
-          <NavigationButton text='Projects' />
-          <NavigationButton text='Contact' />
+        <Box sx={{ maxWidth: 250, width: "100%" }}>
+          <div className='nav-border'>
+            <ColorToggle />
+          </div>
+          <NavigationButton text='Home' onClickFunc={handleOpen}/>
+          <NavigationButton text='About' onClickFunc={handleOpen}/>
+          <NavigationButton text='Projects' onClickFunc={handleOpen}/>
+          <NavigationButton text='Contact' onClickFunc={handleOpen}/>
         </Box>
       </div>
     </>

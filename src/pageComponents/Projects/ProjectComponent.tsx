@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types';
 import { Image, Anchor, Button, Grid, Text, Center, Group, Space } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 import { ChevronRight, BrandGithub } from 'tabler-icons-react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import { ThemeDarkContext } from '../General/ThemeDarkContext';
 
 interface IconsType {
   [key: string]: string
@@ -14,13 +15,18 @@ const Icons: IconsType = {
   AWS: require('../../static/Logos/aws-icon-light.png'),
   Django: require('../../static/Logos/django-icon-light.png'),
   GraphQL: require('../../static/Logos/graphql-icon-light.png'),
-  Heroku: require('../../static/Logos/heroku-icon-light.png'),
+  HerokuLight: require('../../static/Logos/heroku-icon-light.png'),
+  HerokuDark: require('../../static/Logos/heroku-icon-dark.png'),
   Jest: require('../../static/Logos/jest-icon-light.png'),
-  NextJS: require('../../static/Logos/next-icon-light.png'),
-  PostgreSQL: require('../../static/Logos/postgresql-icon-light.png'),
+  NextJSLight: require('../../static/Logos/nextjs-icon-light.png'),
+  NextJSDark: require('../../static/Logos/nextjs-icon-dark.png'),
+  PostgreSQLLight: require('../../static/Logos/postgresql-icon-light.png'),
+  PostgreSQLDark: require('../../static/Logos/postgresql-icon-dark.png'),
   React: require('../../static/Logos/react-icon-light.png'),
-  SendGrid: require('../../static/Logos/sendgrid-icon-light.png'),
-  Shopify: require('../../static/Logos/shopify-icon-light.png'),
+  SendGridLight: require('../../static/Logos/sendgrid-icon-light.png'),
+  SendGridDark: require('../../static/Logos/sendgrid-icon-dark.png'),
+  ShopifyLight: require('../../static/Logos/shopify-icon-light.png'),
+  ShopifyDark: require('../../static/Logos/shopify-icon-dark.png'),
   TypeScript: require('../../static/Logos/typescript-icon-light.png'),
 }
 
@@ -35,8 +41,28 @@ interface IProps {
   techStack: string[]
 }
 
+const iconLookup = (icon: string, isDark: boolean) => {
+  const icons = {
+    AntD: 'AntD',
+    AWS: 'AWS',
+    Django: 'Django',
+    GraphQL: 'GraphQL',
+    Heroku: isDark ? 'HerokuDark' : 'HerokuLight',
+    Jest: 'Jest',
+    NextJS: isDark ? 'NextJSDark' : 'NextJSLight',
+    PostgreSQL: isDark ? 'PostgreSQLDark' : 'PostgreSQLLight',
+    React: 'React',
+    SendGrid: isDark ? 'SendGridDark' : 'SendGridLight',
+    Shopify: isDark ? 'ShopifyDark' : 'ShopifyLight',
+    TypeScript: 'TypeScript'
+  }
+
+  return icons[icon as keyof typeof icons]
+}
+
 export const ProjectComponent = (props: IProps) => {
   const { hovered, ref } = useHover();
+  const { isDark } = useContext(ThemeDarkContext)
 
   return (
     <>
@@ -76,7 +102,7 @@ export const ProjectComponent = (props: IProps) => {
               {props.techStack.map(icon => {
                 return (
                   <div key={icon}>
-                    <Image src={Icons[icon]} height='50px' ></Image>
+                    <Image src={Icons[iconLookup(icon, isDark)]} height='50px' ></Image>
                   </div>
                 )
               })}

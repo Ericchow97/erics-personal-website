@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Container, Divider, Text, Space } from '@mantine/core';
 import { ProjectComponent } from '../pageComponents/Projects';
+import { ThemeDarkContext } from '../pageComponents/General/ThemeDarkContext';
 
 export const Projects = () => {
+  const { isDark } = useContext(ThemeDarkContext)
   return (
     <>
       <Container id="Projects" size="sm" px="xs">
@@ -23,7 +25,7 @@ export const Projects = () => {
           />
           <Divider my="sm" />
           <ProjectComponent
-            image={require('../static/GiftIt/Giftit-Logo.png')}
+            image={isDark ? require('../static/GiftIt/Giftit-Logo-dark.png') : require('../static/GiftIt/Giftit-Logo-light.png')}
             alt="Giftit App logo"
             website='https://apps.shopify.com/giftit-1'
             websitePreview={require('../static/GiftIt/Giftit-Page.png')}

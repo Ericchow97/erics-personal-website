@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { ThemeDarkContext } from '../General/ThemeDarkContext'
 
 export const ColorToggle = () => {
-  const [isDark, setIsDark] = useState(false)
-
-  useEffect(() => {
-    if (isDark) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
-  }, [isDark])
+  const themeContext = useContext(ThemeDarkContext)
 
   return (
     <>
-      <input type="checkbox" className='color-toggle' onChange={e => setIsDark(e.target.checked)} />
+      <input type="checkbox" className='color-toggle' checked={themeContext.isDark} onChange={e => themeContext.changeTheme(e.target.checked)} />
     </>
   )
 }

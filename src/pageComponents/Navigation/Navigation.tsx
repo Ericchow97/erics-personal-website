@@ -22,7 +22,7 @@ export const Navigation = () => {
         />
       </div>
       <div className='side-nav-bar'>
-        <Box sx={{ maxWidth: 250, width: "100%" }}>
+        <Box className='nav-container'>
           <div className='nav-border'>
             <ColorToggle />
           </div>

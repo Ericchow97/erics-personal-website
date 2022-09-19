@@ -169,6 +169,18 @@ body.showBody {
   justify-content: center;
 }
 
+@media only screen and (max-width: 720px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}
+
 /**************** NAVIGATION CSS ****************/
 .nav-burger {
   position: fixed;
@@ -200,6 +212,11 @@ body.showBody {
 
 .side-nav-bar.open {
   width: 250px;
+}
+
+.nav-container {
+  max-width: 250;
+  width: "100%";
 }
 
 .nav-border {
@@ -283,7 +300,7 @@ a.navigation-button {
   right: 30%;
   transform: translateX(14px);
   content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="%23FAEA35" fill="%23FAEA35" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>  <circle cx="12" cy="12" r="4"></circle>  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path></svg>');
-  color: rgb(255,255,255);
+  color: rgb(255, 255, 255);
   transition: color 150ms ease 0s;
 }
 
@@ -300,6 +317,16 @@ a.navigation-button {
   transform: translateX(-100%);
   content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="white" fill="white" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>   <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg>');
   color: rgb(255, 255, 255);
+}
+
+@media only screen and (max-width: 600px) {
+  .side-nav-bar.open {
+    width: 100%;
+  }
+  .nav-burger {
+    top: 8px;
+    left: 8px;
+  }
 }
 
 /**************** HOME CSS ****************/
@@ -352,6 +379,19 @@ a.navigation-button {
   position: absolute;
   left: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .home-container {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-container * {
+    text-align: center;
+  }
+}
+
 /**************** AVATAR ANIMATION ****************/
 
 .arm-wave {
@@ -389,15 +429,14 @@ a.navigation-button {
 
 .about-container h3 {
   font-size: 2rem;
-  margin:0;
+  margin: 0;
 }
 
 .about-container p {
   font-size: 1.5rem;
 }
 
-/**************** OTHER PAGES ****************/
-
+/**************** PROJECTS CSS ****************/
 .projects-container {
   background-color: var(--color-background);
   border-radius: 12px;
@@ -454,6 +493,26 @@ a.navigation-button {
   transition: opacity 100ms;
 }
 
+@media only screen and (max-width: 768px) {
+  .projects-container {
+    margin: -10rem 3rem 0;
+  }
+
+  .project-logo-container {
+    display: none;
+  }
+
+  .project-text-container {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+/**************** CONTACT CSS ****************/
+.contact-parent-container {
+  padding: 2px 9rem 1rem;
+}
+
 .contact-container {
   margin: -5rem auto 0;
   padding: 1rem;
@@ -479,4 +538,11 @@ a.navigation-button {
   display: flex;
   justify-content: center;
   color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .about-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }

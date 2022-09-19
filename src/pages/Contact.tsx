@@ -9,7 +9,7 @@ import { ReactComponent as Email } from '../static/Contact/email.svg'
 export const Contact = () => {
   return (
     <>
-      <Container id="Contact" className='about-container' style={{ padding: '2rem 9rem 1rem' }}>
+      <Container id="Contact" className='about-container contact-parent-container'>
         <Container className='contact-container'>
           <Text size='xl' weight={700}>Interested in learning more?</Text>
           <Space h='sm' />
@@ -39,7 +39,7 @@ export const Contact = () => {
         <Space h='sm' />
         <Text>Created with React.</Text>
         <Space h='sm' />
-        <Text>See the code base <a href="https://github.com/Ericchow97/erics-personal-website" target={"_blank"} rel="noreferrer noopener" style={{color:'inherit'}}>here</a>.</Text>
+        <Text>See the code base <a href="https://github.com/Ericchow97/erics-personal-website" target={"_blank"} rel="noreferrer noopener" style={{ color: 'inherit' }}>here</a>.</Text>
       </Container>
     </>
   )

@@ -68,7 +68,7 @@ export const ProjectComponent = (props: IProps) => {
     <>
       <Text size='xl' weight={700} align='left'>{props.name}</Text>
       <Grid >
-        <Grid.Col span={3} >
+        <Grid.Col span={3}  className="project-logo-container">
           <div ref={ref} className="project-logo">
             <SwitchTransition>
               <CSSTransition
@@ -93,7 +93,7 @@ export const ProjectComponent = (props: IProps) => {
             </SwitchTransition>
           </div>
         </Grid.Col>
-        <Grid.Col span={9}>
+        <Grid.Col span={9} className="project-text-container">
           <div style={{ textAlign: 'left' }}>
             <Text size='lg'>{props.description}</Text>
             <Space h="xs" />
@@ -163,7 +163,7 @@ export const ProjectComponent = (props: IProps) => {
             },
           })}
         >
-          Source Code Available Upon Request
+          Available Upon Request
         </Button>
         )}
         <Anchor href={props.website} target="_blank">

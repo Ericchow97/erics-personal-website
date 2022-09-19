@@ -5,7 +5,7 @@ body {
 }
 
 p {
-  font-size: 16px;
+  font-size: 22px;
 }
 
 .dark {
@@ -23,13 +23,14 @@ html {
   background-color: var(--color-background);
   position: absolute;
   z-index: -2;
+  width: 100%;
 }
 
 /**************** LOADING PAGE ****************/
-body {
+/* body {
   height: 100%;
   overflow-y: hidden;
-}
+} */
 
 body.showBody {
   height: auto;
@@ -263,7 +264,7 @@ a.navigation-button {
   box-sizing: border-box;
   content: "";
   display: block;
-  background-color: rgb(134, 142, 150);
+  background-color: #fff;
   height: 20px;
   width: 20px;
   border: 1px solid rgb(222, 226, 230);
@@ -330,7 +331,7 @@ a.navigation-button {
 .anchor-button {
   background-color: rgb(9, 132, 227);
   color: #fff;
-  height: 36px;
+  height: 48px;
   border-radius: 32px;
   font-weight: 600;
   font-size: 14px;
@@ -338,8 +339,8 @@ a.navigation-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 12px;
-  padding-right: 18px;
+  padding-left: 16px;
+  padding-right: 22px;
 }
 
 .anchor-button:hover {
@@ -379,12 +380,23 @@ a.navigation-button {
   }
 }
 
-/**************** OTHER PAGES ****************/
+/**************** ABOUT CSS ****************/
 .about-container {
-  padding: 6rem 9rem 16rem;
+  padding: 3rem 9rem 12rem;
   color: white;
   background-color: rgb(9, 132, 227);
 }
+
+.about-container h3 {
+  font-size: 2rem;
+  margin:0;
+}
+
+.about-container p {
+  font-size: 1.5rem;
+}
+
+/**************** OTHER PAGES ****************/
 
 .projects-container {
   background-color: var(--color-background);

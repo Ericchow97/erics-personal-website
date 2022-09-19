@@ -12,13 +12,21 @@ export const Home = () => {
 
   const darkContext = useContext(ThemeDarkContext)
 
-  //resize canvas to window size once defined
-  //TODO: Resize canvas if window gets resized
+  // resize canvas to window size once defined or when window is resized itself
   useEffect(() => {
-    const ctx = canvas.current!.getContext('2d')
-    if (!ctx) return
-    ctx.canvas.width = document.documentElement.clientWidth
-    ctx.canvas.height = window.innerHeight
+    const handleResize = () => {
+      const ctx = canvas.current!.getContext('2d')
+      if (!ctx) return
+      ctx.canvas.width = document.documentElement.clientWidth
+      ctx.canvas.height = window.innerHeight
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [canvas])
 
   // define draw & interval
@@ -87,7 +95,7 @@ export const Home = () => {
           </div>
         </Container>
         <a className='anchor-button' href='#About'>
-          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevrons-down" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevrons-down" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <polyline points="7 7 12 12 17 7"></polyline>
             <polyline points="7 13 12 18 17 13"></polyline>

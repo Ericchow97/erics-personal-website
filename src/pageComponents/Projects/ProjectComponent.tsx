@@ -95,9 +95,9 @@ export const ProjectComponent = (props: IProps) => {
         </Grid.Col>
         <Grid.Col span={9}>
           <div style={{ textAlign: 'left' }}>
-            <Text>{props.description}</Text>
+            <Text size='lg'>{props.description}</Text>
             <Space h="xs" />
-            <Text weight={700}>Tech Stack</Text>
+            <Text weight={700} size='xl'>Tech Stack</Text>
             <Group>
               {props.techStack.map(icon => {
                 return (
@@ -112,7 +112,7 @@ export const ProjectComponent = (props: IProps) => {
       </Grid>
       <Space h="md" />
       <Group position='right'>
-        {props.githubWebsite && (
+        {props.githubWebsite ? (
           <Anchor href={props.githubWebsite} target="_blank">
             <Button
               radius="xl"
@@ -138,6 +138,33 @@ export const ProjectComponent = (props: IProps) => {
               View Source Code
             </Button>
           </Anchor>
+        ): (
+          <Button
+          radius="xl"
+          size="md"
+          color="dark"
+          disabled
+          leftIcon={<BrandGithub />}
+          styles={(theme) => ({
+            root: {
+              border: 0,
+              height: 42,
+              paddingLeft: 20,
+              paddingRight: 20,
+              backgroundColor: '#25262b !important',
+              color: '#fff !important',
+
+              '&:hover': {
+                backgroundColor: theme.fn.darken('#25262b', 0.95),
+              },
+            },
+            leftIcon: {
+              marginRight: 15,
+            },
+          })}
+        >
+          Source Code Available Upon Request
+        </Button>
         )}
         <Anchor href={props.website} target="_blank">
           <Button

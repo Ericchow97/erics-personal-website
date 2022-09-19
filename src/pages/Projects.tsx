@@ -9,7 +9,7 @@ export const Projects = () => {
     <>
       <Container id="Projects" size="sm" px="xs">
         <div className='projects-container'>
-          <Text size='xl' weight={700}>Previous Projects</Text>
+          <Text size='xl' weight={700}>Projects</Text>
           <Space h="md" />
           <ProjectComponent
             image={require('../static/Trolley/trolley-logo.png')}
@@ -17,8 +17,8 @@ export const Projects = () => {
             website='https://apps.shopify.com/trolley-1'
             websitePreview={require('../static/Trolley/trolley-landing-page.png')}
             name="Trolley"
-            description="Trolley is a Shopify App that adds a cart drawer to the merchants store. Trolley aims to provide 
-            an efficient and minimalistic solution with unlimited customization options. Trolley's cart drawer enables 
+            description="Trolley is a Shopify App that adds a customizable cart drawer to the merchant's store. Trolley aims to provide 
+            an efficient and simplistic solution with unlimited customization options. Trolley's cart drawer enables 
             faster checkout times and allows merchants to cross sell or upsell additional products based on their own 
             predefined rules."
             techStack={['React', 'TypeScript', "Shopify", "GraphQL", 'NextJS', "Heroku", "AWS", "Jest", "SendGrid"]}
@@ -32,8 +32,8 @@ export const Projects = () => {
             githubWebsite='https://github.com/Ericchow97/giftit'
             name="GiftIt"
             description="GiftIt is a Shopify App which provides merchants the ability to add a gifting service to their store.
-          GiftIt offers shoppers an opportunity to send a personalized gift even when they don’t know their giftees shipping 
-          address. With GiftIt, gifters will be able to select any item from the store catalog and purchase it as a gift."
+            GiftIt offers shoppers an opportunity to send a personalized gift even when they don’t know their giftees shipping 
+            address. With GiftIt, gifters will be able to select any item from the store catalog and purchase it as a gift."
             techStack={['React', 'TypeScript', "Shopify", "GraphQL", 'NextJS', "Heroku", "AWS", "Jest", "SendGrid"]}
           />
           <Divider my="sm" />
@@ -45,8 +45,8 @@ export const Projects = () => {
             githubWebsite='https://github.com/Ericchow97/cahl-website'
             name="CAHL.net"
             description="CAHL.net is a website built for a Saturday night hockey league to keep track of series stats,
-          players stats and individual milestones. This project aimed to modernize the technology stack of its predecessor 
-          which relied .Net and Adobe Flash Player for its functionality."
+            players stats and individual milestones. This project aimed to modernize the technology stack of its predecessor 
+            which previously relied on .Net and Adobe Flash Player for its functionality."
             techStack={['React', "AntD", "Django", 'PostgreSQL', "AWS"]}
           />
         </div>

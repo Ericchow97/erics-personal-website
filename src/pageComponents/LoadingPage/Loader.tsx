@@ -34,8 +34,7 @@ export const Loader = () => {
         document.querySelector(".loading-bottom")?.classList.add('start')
         setTimeout(() => {
           document.querySelector(".loader")?.classList.add('hide')
-          document.querySelector("body")!.className ="showBody";
-          
+          document.querySelector("body")!.classList.add("showBody");
         }, 2000)
       }, 8000)
 

@@ -39,7 +39,7 @@ export const Contact = () => {
         <Space h='sm' />
         <Text>Created with React.</Text>
         <Space h='sm' />
-        <Text>See the code base here.</Text>
+        <Text>See the code base <a href="https://github.com/Ericchow97/erics-personal-website" target={"_blank"} rel="noreferrer noopener" style={{color:'inherit'}}>here</a>.</Text>
       </Container>
     </>
   )

@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <>
-      <LoadingPage />
+      {/* <LoadingPage /> */}
       <div className="App">
         <ThemeDarkContext.Provider value={{ isDark, changeTheme }}>
           <Home />

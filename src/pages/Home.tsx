@@ -91,7 +91,10 @@ export const Home = () => {
           </div>
           <div className='text-container'>
             <h1 className='intro-text'>Hi I'm Eric!</h1>
-            <h2>Front End/Full Stack Web Developer.</h2>
+            <div className='intro-role-container'>
+              <span className='intro-role-animation'></span>
+              <h2 className='intro-role-text'>Front End/Full Stack Web Developer.</h2>
+            </div>
           </div>
         </Container>
         <a className='anchor-button' href='#About'>

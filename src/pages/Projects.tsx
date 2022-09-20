@@ -1,15 +1,22 @@
 import React, { useContext } from 'react'
-import { Container, Divider, Text, Space } from '@mantine/core';
+import { Container, Divider, Space } from '@mantine/core';
 import { ProjectComponent } from '../pageComponents/Projects';
 import { ThemeDarkContext } from '../pageComponents/General/ThemeDarkContext';
+import { useInView } from 'react-intersection-observer';
 
 export const Projects = () => {
   const { isDark } = useContext(ThemeDarkContext)
+  const { ref, inView } = useInView({
+    threshold: 0,
+    triggerOnce: true
+  })
+
+
   return (
     <>
       <Container id="Projects" size="sm" px="xs">
-        <div className='projects-container'>
-          <Text size='xl' weight={700}>Projects</Text>
+        <div ref={ref} className='projects-container'>
+          <h3 className={`section-header ${inView && 'animate-header'}`}>Projects</h3>
           <Space h="md" />
           <ProjectComponent
             image={require('../static/Trolley/trolley-logo.png')}
@@ -22,6 +29,7 @@ export const Projects = () => {
             faster checkout times and allows merchants to cross sell or upsell additional products based on their own 
             predefined rules."
             techStack={['React', 'TypeScript', "Shopify", "GraphQL", 'NextJS', "Heroku", "AWS", "Jest", "SendGrid"]}
+            className="left"
           />
           <Divider my="sm" />
           <ProjectComponent
@@ -35,6 +43,7 @@ export const Projects = () => {
             GiftIt offers shoppers an opportunity to send a personalized gift even when they don’t know their giftees shipping 
             address. With GiftIt, gifters will be able to select any item from the store catalog and purchase it as a gift."
             techStack={['React', 'TypeScript', "Shopify", "GraphQL", 'NextJS', "Heroku", "AWS", "Jest", "SendGrid"]}
+            className="right"
           />
           <Divider my="sm" />
           <ProjectComponent
@@ -48,6 +57,7 @@ export const Projects = () => {
             players stats and individual milestones. This project aimed to modernize the technology stack of its predecessor 
             which previously relied on .Net and Adobe Flash Player for its functionality."
             techStack={['React', "AntD", "Django", 'PostgreSQL', "AWS"]}
+            className="left"
           />
         </div>
       </Container>

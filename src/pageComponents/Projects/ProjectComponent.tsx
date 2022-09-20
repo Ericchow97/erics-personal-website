@@ -5,6 +5,7 @@ import { useHover } from '@mantine/hooks';
 import { ChevronRight, BrandGithub } from 'tabler-icons-react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import { ThemeDarkContext } from '../General/ThemeDarkContext';
+import { useInView } from 'react-intersection-observer';
 
 interface IconsType {
   [key: string]: string
@@ -38,7 +39,8 @@ interface IProps {
   githubWebsite?: string,
   name: string,
   description: string,
-  techStack: string[]
+  techStack: string[],
+  className: string
 }
 
 const iconLookup = (icon: string, isDark: boolean) => {
@@ -64,135 +66,144 @@ export const ProjectComponent = (props: IProps) => {
   const { hovered, ref } = useHover();
   const { isDark } = useContext(ThemeDarkContext)
 
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: true
+  })
+
   return (
     <>
-      <Text size='xl' weight={700} align='left'>{props.name}</Text>
-      <Grid >
-        <Grid.Col span={3}  className="project-logo-container">
-          <div ref={ref} className="project-logo">
-            <SwitchTransition>
-              <CSSTransition
-                key={hovered ? "unhovered" : "hovered"}
-                addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
-                classNames='fade'
-              >
-                {!hovered ? (
-                  <Center>
-                    <Image
-                      radius="md"
-                      src={props.image}
-                      alt={props.alt}
-                    />
-                  </Center>
-                ) : (
-                  <div className='website-preview'>
-                    <div className='bg-image' style={{ backgroundImage: `url(${props.websitePreview})` }}></div>
-                  </div>
-                )}
-              </CSSTransition>
-            </SwitchTransition>
-          </div>
-        </Grid.Col>
-        <Grid.Col span={9} className="project-text-container">
-          <div style={{ textAlign: 'left' }}>
-            <Text size='lg'>{props.description}</Text>
-            <Space h="xs" />
-            <Text weight={700} size='xl'>Tech Stack</Text>
-            <Group>
-              {props.techStack.map(icon => {
-                return (
-                  <div key={icon}>
-                    <Image src={Icons[iconLookup(icon, isDark)]} height='50px' ></Image>
-                  </div>
-                )
-              })}
-            </Group>
-          </div>
-        </Grid.Col>
-      </Grid>
-      <Space h="md" />
-      <Group position='right'>
-        {props.githubWebsite ? (
-          <Anchor href={props.githubWebsite} target="_blank">
-            <Button
-              radius="xl"
-              size="md"
-              color="dark"
-              leftIcon={<BrandGithub />}
-              styles={(theme) => ({
-                root: {
-                  border: 0,
-                  height: 42,
-                  paddingLeft: 20,
-                  paddingRight: 20,
+      <div ref={inViewRef}>
+        <div className={`project-component ${props.className} ${inView && 'animate-project'}`}>
+          <Text size='xl' weight={700} align='left'>{props.name}</Text>
+          <Grid >
+            <Grid.Col span={3} className="project-logo-container">
+              <div ref={ref} className="project-logo">
+                <SwitchTransition>
+                  <CSSTransition
+                    key={hovered ? "unhovered" : "hovered"}
+                    addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
+                    classNames='fade'
+                  >
+                    {!hovered ? (
+                      <Center>
+                        <Image
+                          radius="md"
+                          src={props.image}
+                          alt={props.alt}
+                        />
+                      </Center>
+                    ) : (
+                      <div className='website-preview'>
+                        <div className='bg-image' style={{ backgroundImage: `url(${props.websitePreview})` }}></div>
+                      </div>
+                    )}
+                  </CSSTransition>
+                </SwitchTransition>
+              </div>
+            </Grid.Col>
+            <Grid.Col span={9} className="project-text-container">
+              <div style={{ textAlign: 'left' }}>
+                <Text size='lg'>{props.description}</Text>
+                <Space h="xs" />
+                <Text weight={700} size='xl'>Tech Stack</Text>
+                <Group>
+                  {props.techStack.map(icon => {
+                    return (
+                      <div key={icon}>
+                        <Image src={Icons[iconLookup(icon, isDark)]} height='50px' ></Image>
+                      </div>
+                    )
+                  })}
+                </Group>
+              </div>
+            </Grid.Col>
+          </Grid>
+          <Space h="md" />
+          <Group position='right'>
+            {props.githubWebsite ? (
+              <Anchor href={props.githubWebsite} target="_blank">
+                <Button
+                  radius="xl"
+                  size="md"
+                  color="dark"
+                  leftIcon={<BrandGithub />}
+                  styles={(theme) => ({
+                    root: {
+                      border: 0,
+                      height: 42,
+                      paddingLeft: 20,
+                      paddingRight: 20,
 
-                  '&:hover': {
-                    backgroundColor: theme.fn.darken('#25262b', 0.95),
+                      '&:hover': {
+                        backgroundColor: theme.fn.darken('#25262b', 0.95),
+                      },
+                    },
+                    leftIcon: {
+                      marginRight: 15,
+                    },
+                  })}
+                >
+                  View Source Code
+                </Button>
+              </Anchor>
+            ) : (
+              <Button
+                radius="xl"
+                size="md"
+                color="dark"
+                disabled
+                leftIcon={<BrandGithub />}
+                styles={(theme) => ({
+                  root: {
+                    border: 0,
+                    height: 42,
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    backgroundColor: '#25262b !important',
+                    color: '#fff !important',
+
+                    '&:hover': {
+                      backgroundColor: theme.fn.darken('#25262b', 0.95),
+                    },
                   },
-                },
-                leftIcon: {
-                  marginRight: 15,
-                },
-              })}
-            >
-              View Source Code
-            </Button>
-          </Anchor>
-        ): (
-          <Button
-          radius="xl"
-          size="md"
-          color="dark"
-          disabled
-          leftIcon={<BrandGithub />}
-          styles={(theme) => ({
-            root: {
-              border: 0,
-              height: 42,
-              paddingLeft: 20,
-              paddingRight: 20,
-              backgroundColor: '#25262b !important',
-              color: '#fff !important',
+                  leftIcon: {
+                    marginRight: 15,
+                  },
+                })}
+              >
+                Available Upon Request
+              </Button>
+            )}
+            <Anchor href={props.website} target="_blank">
+              <Button
+                radius="xl"
+                size="md"
+                variant='outline'
+                rightIcon={<ChevronRight />}
+                styles={() => ({
+                  root: {
+                    paddingRight: '8px',
+                    background: "linear-gradient(to left, transparent 50%, #1c7ed6 50%) right",
+                    backgroundSize: "200% 100%",
+                    transition: ".5s ease-out",
 
-              '&:hover': {
-                backgroundColor: theme.fn.darken('#25262b', 0.95),
-              },
-            },
-            leftIcon: {
-              marginRight: 15,
-            },
-          })}
-        >
-          Available Upon Request
-        </Button>
-        )}
-        <Anchor href={props.website} target="_blank">
-          <Button
-            radius="xl"
-            size="md"
-            variant='outline'
-            rightIcon={<ChevronRight />}
-            styles={() => ({
-              root: {
-                paddingRight: '8px',
-                background: "linear-gradient(to left, transparent 50%, #1c7ed6 50%) right",
-                backgroundSize: "200% 100%",
-                transition: ".5s ease-out",
-
-                '&:hover': {
-                  backgroundPosition: 'left',
-                  color: "white"
-                },
-              },
-              rightIcon: {
-                marginLeft: 0,
-              },
-            })}
-          >
-            Visit Website
-          </Button>
-        </Anchor>
-      </Group>
+                    '&:hover': {
+                      backgroundPosition: 'left',
+                      color: "white"
+                    },
+                  },
+                  rightIcon: {
+                    marginLeft: 0,
+                  },
+                })}
+              >
+                Visit Website
+              </Button>
+            </Anchor>
+          </Group>
+        </div>
+      </div>
     </>
   )
 
@@ -207,4 +218,5 @@ ProjectComponent.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   techStack: PropTypes.array.isRequired,
+  className: PropTypes.string.isRequired
 }

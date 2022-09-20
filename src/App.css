@@ -24,6 +24,7 @@ html {
   position: absolute;
   z-index: -2;
   width: 100%;
+  overflow-x: hidden;
 }
 
 /**************** LOADING PAGE ****************/
@@ -374,7 +375,7 @@ a.navigation-button {
   margin-bottom: 1.5rem;
   color: transparent;
   width: 100%;
-  background: linear-gradient(90deg, var(--color-background) 0%, var(--color-foreground) 20%);
+  background: linear-gradient(90deg, var(--color-background) 0%, var(--color-foreground) 15%);
   background-clip: text;
   background-repeat: no-repeat;
   background-size: 80%;
@@ -473,15 +474,45 @@ a.navigation-button {
   left: 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 880px) {
+  .intro-text {
+    background-size: 90%;
+    font-size: 3.5rem;
+  }
+}
+
+@media only screen and (max-width: 630px) {
   .home-container {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
   }
 
+  .intro-text {
+    animation: shineMobile 1.5s linear forwards;
+  }
+
+  @keyframes shineMobile {
+    0% {
+      background-position-x: -500%;
+    }
+    100% {
+      background-position-x: 0%;
+    }
+  }
+
+  .text-container {
+    justify-content: center;
+  }
+
   .text-container * {
     text-align: center;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .intro-text {
+    font-size: 3rem;
   }
 }
 

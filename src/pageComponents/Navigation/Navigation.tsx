@@ -13,6 +13,8 @@ export const Navigation = () => {
     setOpened((state) => !state)
   }
 
+  //TODO: Logo
+
   return (
     <>
       <div className='nav-burger'>
@@ -26,49 +28,12 @@ export const Navigation = () => {
           <div className='nav-border'>
             <ColorToggle />
           </div>
-          <NavigationButton text='Home' onClickFunc={handleOpen}/>
-          <NavigationButton text='About' onClickFunc={handleOpen}/>
-          <NavigationButton text='Projects' onClickFunc={handleOpen}/>
-          <NavigationButton text='Contact' onClickFunc={handleOpen}/>
+          <NavigationButton text='Home' onClickFunc={handleOpen} />
+          <NavigationButton text='About' onClickFunc={handleOpen} />
+          <NavigationButton text='Projects' onClickFunc={handleOpen} />
+          <NavigationButton text='Contact' onClickFunc={handleOpen} />
         </Box>
       </div>
     </>
   )
 }
-
-// export const Navigation = () => {
-
-//   //TODO: inlcude logo
-//   return (
-//     <>
-//     <Container>
-//       <Grid grow align="center">
-//         <Grid.Col span={1}>
-//           <Button variant="subtle" size="xl" uppercase compact>
-//             Home
-//           </Button>
-//         </Grid.Col>
-//         <Grid.Col span={1}>
-//           <Button variant="subtle" size="xl" uppercase compact>
-//             About
-//           </Button>
-//         </Grid.Col>
-//           <Grid.Col span={1}>
-//           <Button variant="subtle" size="xl" uppercase compact>
-//             Projects
-//           </Button>
-//         </Grid.Col>
-//         <Grid.Col span={1}>
-//           <Button variant="subtle" size="xl" uppercase compact>
-//             Contact
-//           </Button>
-//         </Grid.Col>
-//         <Grid.Col span={1}>
-//           <ColorToggle />
-//         </Grid.Col>
-//       </Grid>
-//     </Container>
-//     </>
-//   )
-
-// }

@@ -4,7 +4,6 @@ import { SocialButtons } from "../pageComponents/Contact";
 import { ReactComponent as LinkedIn } from '../static/Contact/linkedin.svg'
 import { ReactComponent as Github } from '../static/Contact/github.svg'
 import { ReactComponent as Email } from '../static/Contact/email.svg'
-//TODO: insert repository once published
 
 export const Contact = () => {
   return (

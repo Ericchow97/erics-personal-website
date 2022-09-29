@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// TODO: Re-enable body selector in CSS
 export const Loader = () => {
   const [inputText, changeInputText] = useState('')
 
@@ -45,7 +44,6 @@ export const Loader = () => {
     }
   }
 
-  //TODO: be able to type anywhere to start the server 
   //TODO: Create logo
 
   return (

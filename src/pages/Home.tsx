@@ -3,7 +3,7 @@ import { Container } from '@mantine/core';
 import { ReactComponent as Avatar } from '../static/Home/avatar.svg';
 import { Tendrils } from '../pageComponents/Home/Tendrils';
 import { Navigation } from '../pageComponents/Navigation/Navigation';
-import { ThemeDarkContext } from '../pageComponents/General/ThemeDarkContext';
+import { ThemeDarkContext, AnchorButton } from '../pageComponents/General';
 
 export const Home = () => {
   const canvas = useRef<HTMLCanvasElement>(null)
@@ -79,7 +79,11 @@ export const Home = () => {
 
   //TODO: change from front end to full stack once backend is implemented
   //TODO: add resume somewhere
-  //TODO: make mobile responsive
+
+  // first wave on load
+  useEffect(() => {
+    handleMouseOver()
+  }, [])
 
   return (
     <>
@@ -97,14 +101,16 @@ export const Home = () => {
             </div>
           </div>
         </Container>
-        <a className='anchor-button' href='#About'>
-          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevrons-down" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <polyline points="7 7 12 12 17 7"></polyline>
-            <polyline points="7 13 12 18 17 13"></polyline>
-          </svg>
-          <p>View my Projects</p>
-        </a>
+        <AnchorButton href='#Projects'>
+          <>
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon-tabler-chevrons-down" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <polyline points="7 7 12 12 17 7"></polyline>
+              <polyline points="7 13 12 18 17 13"></polyline>
+            </svg>
+            <p>View my Projects</p>
+          </>
+        </AnchorButton>
         <canvas id='home-canvas' ref={canvas}></canvas>
       </Container>
     </>

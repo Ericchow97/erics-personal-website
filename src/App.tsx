@@ -13,7 +13,6 @@ const App = () => {
     setIsDark(bool)
   }
 
-  //TODO: on scroll, animation text to scroll in
   //TODO: Update ICO
   return (
     <>

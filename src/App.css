@@ -1,6 +1,7 @@
 body {
-  --color-background: #fafafa;
+  --color-background: #fdfdfd;
   --color-foreground: #1f2023;
+  --color-background-secondary: #b4b4b4;
   margin: 0;
 }
 
@@ -11,14 +12,15 @@ p {
 .dark {
   --color-background: #1f2023;
   --color-foreground: #efefef;
+  --color-background-secondary: #2c3238;
 }
 
 html {
   scroll-behavior: smooth;
+  font-size: 18px;
 }
 
 .App {
-  text-align: center;
   color: var(--color-foreground);
   background-color: var(--color-background);
   position: absolute;
@@ -172,19 +174,20 @@ body.showBody {
 
 @media only screen and (max-width: 720px) {
   html {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   html {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 .section-header {
   font-size: 2rem;
   margin: 0;
+  margin-bottom: 16px;
   opacity: 0;
   transform: translateY(100%);
   transition: all 1s 0.5s ease-in-out;
@@ -364,10 +367,6 @@ a.navigation-button {
   flex-wrap: wrap;
 }
 
-.text-container * {
-  text-align: left;
-}
-
 .intro-text {
   font-size: 4rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -435,8 +434,8 @@ a.navigation-button {
 }
 
 .anchor-button {
-  background-color: rgb(9, 132, 227);
-  color: #fff;
+  border: 2px solid rgb(9, 132, 227);
+  color: var(--color-foreground);
   height: 48px;
   border-radius: 32px;
   font-weight: 600;
@@ -448,7 +447,8 @@ a.navigation-button {
   padding-left: 16px;
   padding-right: 22px;
   opacity: 0;
-  transform: translateY(50px);
+  position: relative;
+  overflow: hidden;
   animation: fadeIn 1s 4s forwards;
 }
 
@@ -464,8 +464,38 @@ a.navigation-button {
   }
 }
 
-.anchor-button:hover {
-  background-color: #1c7ed6;
+.anchor-button::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  inset: -1px -1px -1px -1px;
+  border-radius: inherit;
+  background: rgb(9, 132, 227);
+  z-index: -1;
+  transition: transform 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+.anchor-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.anchor-button:hover > .icon-tabler-chevrons-down {
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(3px);
+  }
+  75% {
+    transform: translateY(-3px);
+  }
 }
 
 #home-canvas {
@@ -478,6 +508,17 @@ a.navigation-button {
   .intro-text {
     background-size: 90%;
     font-size: 3.5rem;
+    animation: shineTablet 1.5s linear forwards;
+    text-align: center;
+  }
+
+  @keyframes shineTablet {
+    0% {
+      background-position-x: -800%;
+    }
+    100% {
+      background-position-x: -100%;
+    }
   }
 }
 
@@ -494,7 +535,7 @@ a.navigation-button {
 
   @keyframes shineMobile {
     0% {
-      background-position-x: -500%;
+      background-position-x: -800%;
     }
     100% {
       background-position-x: 0%;
@@ -503,10 +544,6 @@ a.navigation-button {
 
   .text-container {
     justify-content: center;
-  }
-
-  .text-container * {
-    text-align: center;
   }
 }
 
@@ -546,9 +583,10 @@ a.navigation-button {
 
 /**************** ABOUT CSS ****************/
 .about-container {
-  padding: 3rem 9rem 12rem;
+  padding: 2rem 3rem 12rem;
   color: white;
   background-color: rgb(9, 132, 227);
+  position: relative;
 }
 
 .about-text {
@@ -562,8 +600,225 @@ a.navigation-button {
   transform: translateY(0);
 }
 
-.about-container p {
-  font-size: 1.5rem;
+.bird-container {
+  position: absolute;
+  top: 1.5rem;
+  right: 3rem;
+}
+
+.bird-head {
+  position: absolute;
+  top: -5px;
+  right: 40px;
+  transform-origin: 25px 43px;
+}
+
+.bird-body {
+  position: relative;
+}
+
+.custom-ide {
+  background-color: var(--color-background-secondary);
+  border-radius: 8px;
+  box-shadow: 0 2.74416px 2.74416px rgb(0 0 0 / 3%), 0 5.48831px 5.48831px rgb(0 0 0 / 4%),
+    0 13.7208px 10.9766px rgb(0 0 0 / 5%), 0 20.5812px 20.5812px rgb(0 0 0 / 6%), 0 41.1623px 41.1623px rgb(0 0 0 / 7%),
+    0 96.0454px 89.1851px rgb(0 0 0 / 9%);
+  color: var(--color-foreground);
+}
+
+.custom-ide-title-bar-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px 0px 16px;
+  border-bottom: var(--color-background-secondary);
+}
+
+.button-dot-container {
+  display: flex;
+  gap: 4px;
+}
+
+.button-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.button-dot.red {
+  background-color: #ff5f57;
+}
+
+.button-dot.yellow {
+  background-color: #febc3a;
+}
+
+.button-dot.green {
+  background-color: #28c840;
+}
+
+.custom-ide-tab-container {
+  padding: 8px 16px 0px 16px;
+}
+
+.tabs-list {
+  display: flex;
+  flex-flow: row wrap;
+  overflow-y: hidden;
+  height: 30px;
+}
+
+.ide-tab {
+  border-radius: 8px 8px 0 0;
+  background-color: var(--color-background);
+  border: #6e7681;
+  padding: 4px 12px 0 12px;
+  border: 1px solid #30363d;
+  border-bottom: 0;
+}
+
+.ide-tab.unselected {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.custom-ide-text-container {
+  padding: 16px;
+  display: flex;
+  background-color: var(--color-background);
+  border-radius: 0 0 8px 8px;
+}
+
+.custom-ide-text-container > div:nth-child(2) {
+  flex: 1;
+}
+
+.custom-ide-about-number-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.custom-ide-line-number {
+  user-select: none;
+  text-align: right;
+  color: #6e7681;
+  padding-right: 8px;
+}
+
+.custom-ide-about-text-container {
+  height: 100%;
+}
+
+.typewriter-container {
+  width: max-content;
+}
+
+.ide-typewriter {
+  border-right: 2px solid transparent;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes blinkTextCursor {
+  0% {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  100% {
+    border-right-color: transparent;
+  }
+}
+
+.reveal-rest {
+  animation: row-reveal 1s 5s both;
+}
+
+@keyframes row-reveal {
+  0%,
+  40% {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.ide-reserved {
+  color: #c586c0;
+}
+
+.ide-js-reserved {
+  color: #569cd6;
+}
+
+.ide-react-reserved {
+  color: #dcdcaa;
+}
+
+.ide-function {
+  color: #f1d700;
+}
+
+.ide-string {
+  color: #ebaf52;
+}
+
+.ide-variable {
+  color: #8cdcfe;
+}
+
+.ide-html {
+  color: #808080;
+}
+
+.about-cta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.about-cta > .anchor-button {
+  border: 2px solid #fdfdfd;
+  background-color: #fdfdfd;
+  color: rgb(9, 132, 227);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  animation: fadeIn 1s 6s forwards;
+}
+
+.about-cta > .anchor-button:hover {
+  border-color: rgb(9, 132, 227);
+  color: #fdfdfd;
+  background-color: transparent;
+  transform: translateY(-5px);
+}
+
+
+@media only screen and (max-width: 480px) {
+  .bird-container {
+    top: 2.5rem;
+  }
+
+  .bird-head {
+    top: -5px;
+    right: 30px;
+    width: 41.25px;
+    transform-origin: 18px 33px;
+  }
+
+  .bird-body {
+    width: 75px;
+  }
 }
 
 /**************** PROJECTS CSS ****************/

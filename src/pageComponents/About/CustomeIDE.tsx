@@ -15,7 +15,7 @@ export const CustomIDE = ({ inView }: IProps) => {
         <div className='custom-ide-tab-container'>
           <IDETabs />
         </div>
-        {inView && <IDEText />}
+        <IDEText inView={inView}/>
       </div>
     </>
   )

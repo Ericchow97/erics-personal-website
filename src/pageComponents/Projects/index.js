@@ -1,3 +1,3 @@
-import { ProjectComponent } from "./ProjectComponent";
+import { ProjectsCarousel } from "./ProjectsCarousel";
 
-export { ProjectComponent }
+export { ProjectsCarousel }

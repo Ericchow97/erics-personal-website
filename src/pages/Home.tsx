@@ -78,7 +78,7 @@ export const Home = () => {
   }
 
   //TODO: change from front end to full stack once backend is implemented
-  //TODO: add resume somewhere
+  // TODO: Add mouse scroll animation 
 
   // first wave on load
   useEffect(() => {

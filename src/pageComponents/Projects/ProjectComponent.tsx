@@ -1,9 +1,6 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import PropTypes from 'prop-types';
-import { Image, Anchor, Button, Grid, Text, Center, Group, Space } from '@mantine/core';
-import { useHover } from '@mantine/hooks';
 import { ChevronRight, BrandGithub } from 'tabler-icons-react'
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import { ThemeDarkContext } from '../General/ThemeDarkContext';
 import { useInView } from 'react-intersection-observer';
 
@@ -31,17 +28,6 @@ const Icons: IconsType = {
   TypeScript: require('../../static/Logos/typescript-icon-light.png'),
 }
 
-interface IProps {
-  image: string,
-  alt: string,
-  website: string,
-  websitePreview: string,
-  githubWebsite?: string,
-  name: string,
-  description: string,
-  techStack: string[],
-  className: string
-}
 
 const iconLookup = (icon: string, isDark: boolean) => {
   const icons = {
@@ -62,161 +48,68 @@ const iconLookup = (icon: string, isDark: boolean) => {
   return icons[icon as keyof typeof icons]
 }
 
+interface IProps {
+  name: string,
+  description: string,
+  image: string,
+  alt: string,
+  techStack: string[],
+  website: string,
+  githubWebsite?: string,
+}
+
 export const ProjectComponent = (props: IProps) => {
-  const { hovered, ref } = useHover();
   const { isDark } = useContext(ThemeDarkContext)
 
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0.4,
-    triggerOnce: true
-  })
-
+  //TODO: require alt for pictues
   return (
     <>
-      <div ref={inViewRef}>
-        <div className={`project-component ${props.className} ${inView && 'animate-project'}`}>
-          <Text size='xl' weight={700} align='left'>{props.name}</Text>
-          <Grid >
-            <Grid.Col span={3} className="project-logo-container">
-              <div ref={ref} className="project-logo">
-                <SwitchTransition>
-                  <CSSTransition
-                    key={hovered ? "unhovered" : "hovered"}
-                    addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
-                    classNames='fade'
-                  >
-                    {!hovered ? (
-                      <Center>
-                        <Image
-                          radius="md"
-                          src={props.image}
-                          alt={props.alt}
-                        />
-                      </Center>
-                    ) : (
-                      <div className='website-preview'>
-                        <div className='bg-image' style={{ backgroundImage: `url(${props.websitePreview})` }}></div>
-                      </div>
-                    )}
-                  </CSSTransition>
-                </SwitchTransition>
-              </div>
-            </Grid.Col>
-            <Grid.Col span={9} className="project-text-container">
-              <div style={{ textAlign: 'left' }}>
-                <Text size='lg'>{props.description}</Text>
-                <Space h="xs" />
-                <Text weight={700} size='xl'>Tech Stack</Text>
-                <Group>
-                  {props.techStack.map(icon => {
-                    return (
-                      <div key={icon}>
-                        <Image src={Icons[iconLookup(icon, isDark)]} height='50px' ></Image>
-                      </div>
-                    )
-                  })}
-                </Group>
-              </div>
-            </Grid.Col>
-          </Grid>
-          <Space h="md" />
-          <Group position='right'>
-            {props.githubWebsite ? (
-              <Anchor href={props.githubWebsite} target="_blank">
-                <Button
-                  radius="xl"
-                  size="md"
-                  color="dark"
-                  leftIcon={<BrandGithub />}
-                  styles={(theme) => ({
-                    root: {
-                      border: 0,
-                      height: 42,
-                      paddingLeft: 20,
-                      paddingRight: 20,
-
-                      '&:hover': {
-                        backgroundColor: theme.fn.darken('#25262b', 0.95),
-                      },
-                    },
-                    leftIcon: {
-                      marginRight: 15,
-                    },
-                  })}
-                >
-                  View Source Code
-                </Button>
-              </Anchor>
-            ) : (
-              <Button
-                radius="xl"
-                size="md"
-                color="dark"
-                disabled
-                leftIcon={<BrandGithub />}
-                styles={(theme) => ({
-                  root: {
-                    border: 0,
-                    height: 42,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    backgroundColor: '#25262b !important',
-                    color: '#fff !important',
-
-                    '&:hover': {
-                      backgroundColor: theme.fn.darken('#25262b', 0.95),
-                    },
-                  },
-                  leftIcon: {
-                    marginRight: 15,
-                  },
-                })}
-              >
-                Available Upon Request
-              </Button>
-            )}
-            <Anchor href={props.website} target="_blank">
-              <Button
-                radius="xl"
-                size="md"
-                variant='outline'
-                rightIcon={<ChevronRight />}
-                styles={() => ({
-                  root: {
-                    paddingRight: '8px',
-                    background: "linear-gradient(to left, transparent 50%, #1c7ed6 50%) right",
-                    backgroundSize: "200% 100%",
-                    transition: ".5s ease-out",
-
-                    '&:hover': {
-                      backgroundPosition: 'left',
-                      color: "white"
-                    },
-                  },
-                  rightIcon: {
-                    marginLeft: 0,
-                  },
-                })}
-              >
-                Visit Website
-              </Button>
-            </Anchor>
-          </Group>
+      <div className="project-container">
+        <h3 className='project-name'>{props.name}</h3>
+        <div className='project-item-container'>
+          <div className='project-logo-container'>
+            <img src={props.image} alt={props.alt} width='100%' />
+          </div>
+          <div className='project-description-container'>
+            <p className='project-description'>{props.description}</p>
+            <h3 className='project-tech-stack-title'>Tech Stack</h3>
+            <div className='project-tech-stack-container'>
+              {props.techStack.map(icon => {
+                return (
+                  <div key={icon}>
+                    <img src={Icons[iconLookup(icon, isDark)]} 
+                    className='project-tech-stack-image'></img>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+        <div className='project-button-container'>
+          <a href={props.githubWebsite} target='_blank' rel='noreferrer' className='project-button-link-wrapper'>
+            <button className='project-button github' disabled={!props.githubWebsite}>
+              <BrandGithub />
+              {props.githubWebsite ? <p>View Source Code</p> : <p>Available Upon Request</p>}
+            </button>
+          </a>
+          <a href={props.website} target='_blank' rel='noreferrer' className='project-button-link-wrapper'>
+            <button className='project-button website' disabled={!props.githubWebsite}>
+              <p>Visit Website</p>
+              <ChevronRight />
+            </button>
+          </a>
         </div>
       </div>
     </>
   )
-
 }
 
 ProjectComponent.propTypes = {
-  image: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  website: PropTypes.string.isRequired,
-  websitePreview: PropTypes.string.isRequired,
-  githubWebsite: PropTypes.string,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
   techStack: PropTypes.array.isRequired,
-  className: PropTypes.string.isRequired
+  website: PropTypes.string.isRequired,
+  githubWebsite: PropTypes.string,
 }

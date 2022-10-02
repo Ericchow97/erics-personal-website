@@ -14,6 +14,7 @@ const App = () => {
   }
 
   //TODO: Update ICO
+  //TODO: update README
   return (
     <>
       {/* <LoadingPage /> */}

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react"
-import kwesforms from 'kwesforms';
 
 interface IProps {
   show: boolean,
   handleContactClick: (e: React.MouseEvent) => void
+}
+
+interface FormObject {
+  [key: string]: FormDataEntryValue
 }
 
 export const ContactForm = ({ show, handleContactClick }: IProps) => {
@@ -12,14 +15,47 @@ export const ContactForm = ({ show, handleContactClick }: IProps) => {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
-  useEffect(() => {
-    kwesforms.init();
-  }, [])
-
   const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)
   const onLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
   const onMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)
+
+  //TODO: success and fail messages
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log('here')
+    const form = document.querySelector('.contact-form') as HTMLFormElement
+    const formData = new FormData(form);
+    const obj: FormObject = {};
+    formData.forEach((value, key) => {
+      obj[key] = value
+    });
+    const json = JSON.stringify(obj);
+
+    try {
+      const res = await (await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })).json()
+
+      if (res.success) {
+        // handle success
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setMessage('')
+      } else {
+        //handle fail
+      }
+
+    } catch {
+      console.log('error')
+    }
+  }
 
   return (
     <>
@@ -32,15 +68,16 @@ export const ContactForm = ({ show, handleContactClick }: IProps) => {
                   <h3 className="contact-form-header-text">Contact Form</h3>
                   <div className="contact-form-close-button" >
                     <svg xmlns="http://www.w3.org/2000/svg" className='contact-form-close' width="30" height="30" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"className='contact-form-close'></path>
-                      <line x1="18" y1="6" x2="6" y2="18"className='contact-form-close'></line>
-                      <line x1="6" y1="6" x2="18" y2="18"className='contact-form-close'></line>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" className='contact-form-close'></path>
+                      <line x1="18" y1="6" x2="6" y2="18" className='contact-form-close'></line>
+                      <line x1="6" y1="6" x2="18" y2="18" className='contact-form-close'></line>
                     </svg>
                   </div>
                 </div>
                 <p className="contact-form-header-description">Have questions or comments? Feel free to send me a message!</p>
               </div>
-              <form className="kwes-form" action="https://kwesforms.com/api/foreign/forms/VyPmetf5d4bHU96lZ7ED" method="POST">
+              <form className='contact-form' onSubmit={handleSubmit}>
+                <input type="hidden" name="access_key" value="4d4e7d4f-deb8-4892-a8de-6a4fad3080a7" />
                 <div className="contact-form-flex-container">
                   <div>
                     <label htmlFor="fname" className="contact-form-text">First Name</label>

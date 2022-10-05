@@ -3,7 +3,8 @@ import './App.css';
 import { Home, About, Projects, Contact, LoadingPage } from './pages'
 import { ThemeContext, ContactForm } from './pageComponents/General';
 
-//TODO: Mobile friendlty
+//TODO: Mobile friendly
+//TODO: performance testing
 const App = () => {
   const [isDark, setIsDark] = useState(true)
   const [showContactForm, setShowContactForm] = useState(false)

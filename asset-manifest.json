@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/erics-personal-website/static/css/main.20a28fa2.css",
-    "main.js": "/erics-personal-website/static/js/main.7a98c3d4.js",
+    "main.js": "/erics-personal-website/static/js/main.6d19f9d6.js",
     "static/js/787.28cb0dcd.chunk.js": "/erics-personal-website/static/js/787.28cb0dcd.chunk.js",
     "static/media/trolley-logo.png": "/erics-personal-website/static/media/trolley-logo.75b34d742ceaa2c51a43.png",
     "static/media/aws-icon-light.png": "/erics-personal-website/static/media/aws-icon-light.7beba78f96f8846dd836.png",
@@ -28,11 +28,11 @@
     "index.html": "/erics-personal-website/index.html",
     "static/media/github.svg": "/erics-personal-website/static/media/github.fe25c21e772ecdbccbc6c347d40f9a88.svg",
     "main.20a28fa2.css.map": "/erics-personal-website/static/css/main.20a28fa2.css.map",
-    "main.7a98c3d4.js.map": "/erics-personal-website/static/js/main.7a98c3d4.js.map",
+    "main.6d19f9d6.js.map": "/erics-personal-website/static/js/main.6d19f9d6.js.map",
     "787.28cb0dcd.chunk.js.map": "/erics-personal-website/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.20a28fa2.css",
-    "static/js/main.7a98c3d4.js"
+    "static/js/main.6d19f9d6.js"
   ]
 }

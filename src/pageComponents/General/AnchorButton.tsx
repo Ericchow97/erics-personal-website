@@ -1,14 +1,16 @@
 import React from 'react'
 
 interface IProps {
-  href: string,
+  href?: string,
   children: React.ReactElement
-  target?: string
+  target?: string,
+  classNames?: string,
+  onClick?: (e: React.MouseEvent) => void
 }
 
-export const AnchorButton = ({ children, href, target = '_self'}: IProps) => {
+export const AnchorButton = ({ children, href, target, classNames, onClick}: IProps) => {
   return (
-    <a className='anchor-button' href={href} target={target}>
+    <a className={`anchor-button ${classNames}`} href={href} target={target} onClick={onClick}>
       {children}
     </a>
   )

@@ -3,14 +3,14 @@ import { Container } from '@mantine/core';
 import { ReactComponent as Avatar } from '../static/Home/avatar.svg';
 import { Tendrils } from '../pageComponents/Home/Tendrils';
 import { Navigation } from '../pageComponents/Navigation/Navigation';
-import { ThemeDarkContext, AnchorButton } from '../pageComponents/General';
+import { ThemeContext, AnchorButton } from '../pageComponents/General';
 
 export const Home = () => {
   const canvas = useRef<HTMLCanvasElement>(null)
   const mousePosition: [number, number] = [0, 0]
   const tendrils = Array.from(Array(50), (_, i) => new Tendrils(0.45 + 0.025 * (i / 50), mousePosition));
 
-  const darkContext = useContext(ThemeDarkContext)
+  const darkContext = useContext(ThemeContext)
 
   // resize canvas to window size once defined or when window is resized itself
   useEffect(() => {
@@ -78,7 +78,7 @@ export const Home = () => {
   }
 
   //TODO: change from front end to full stack once backend is implemented
-  // TODO: Add mouse scroll animation 
+  // TODO: Add mouse scroll animation on canvas
 
   // first wave on load
   useEffect(() => {
@@ -101,7 +101,7 @@ export const Home = () => {
             </div>
           </div>
         </Container>
-        <AnchorButton href='#Projects'>
+        <AnchorButton href='#Projects' classNames='home'>
           <>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon-tabler-chevrons-down" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

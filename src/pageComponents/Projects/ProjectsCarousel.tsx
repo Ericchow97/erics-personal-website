@@ -1,11 +1,11 @@
 import React, { useState, useContext, useRef } from 'react'
 import { ProjectComponent } from "./ProjectComponent"
-import { ThemeDarkContext } from '../../pageComponents/General/ThemeDarkContext'
+import { ThemeContext } from '../General/ThemeContext'
 import { ProjectComponentSelect } from './ProjectComponentSelect'
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 
 export const ProjectsCarousel = () => {
-  const { isDark } = useContext(ThemeDarkContext)
+  const { isDark } = useContext(ThemeContext)
   const nodeRef = useRef<HTMLDivElement>(null)
 
   const [componentIndex, setComponentIndex] = useState(0)

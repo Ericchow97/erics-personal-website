@@ -1,15 +1,18 @@
-import React from 'react'
+import { useContext } from 'react'
 import { Container } from '@mantine/core';
 import { useInView } from 'react-intersection-observer';
 import { Bird, CustomIDE } from '../pageComponents/About';
 import { AnchorButton } from '../pageComponents/General';
 import Resume from '../static/Eric-Chow-Resume.pdf'
+import { ThemeContext } from '../pageComponents/General';
 
 export const About = () => {
   const { ref, inView } = useInView({
     threshold: 0.3,
     triggerOnce: true
   })
+
+  const { handleContactClick } = useContext(ThemeContext)
 
   //TODO: Check if this inView causes a rerender
   return (
@@ -20,7 +23,7 @@ export const About = () => {
         <CustomIDE inView={inView} />
         {inView && (
           <div className='about-cta'>
-            <AnchorButton href={Resume} target="_blank">
+            <AnchorButton href={Resume} target="_blank" classNames='white'>
               <>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="currentcolor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -32,9 +35,9 @@ export const About = () => {
                 <p>Resume</p>
               </>
             </AnchorButton>
-            <AnchorButton href='#Contact'>
-              <p>Contact Me!</p>
-            </AnchorButton>
+              <AnchorButton classNames='white' onClick={handleContactClick}>
+                <p>Contact Me!</p>
+              </AnchorButton>
           </div>
         )}
       </Container>

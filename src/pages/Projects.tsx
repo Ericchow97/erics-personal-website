@@ -10,22 +10,15 @@ export const Projects = () => {
   })
 
 
-  // TODO: Create 3d Transition
+  // TODO: Create 3d Transition for tech stack used
   //TODO: make projects hero & scrollable
-  // TODO: have a bar at the bottom to scroll throguh projects
-  //TODO: have differnt animations to each proejct
+  //TODO: have different animations to each project
   return (
     <>
       <Container id="Projects" ref={ref} className='projects-container' >
         <h3 className={`section-header ${inView && 'animate-header'}`}>Projects</h3>
         <ProjectsCarousel />
-
       </Container>
-      <Space h="xl" />
-      <Space h="xl" />
-      <Space h="xl" />
-      <Space h="xl" />
-      <Space h="xl" />
     </>
   )
 }

@@ -1,4 +1,5 @@
 import { AnchorButton } from "./AnchorButton";
-import { ThemeDarkContext } from "./ThemeDarkContext";
+import { ThemeContext } from "./ThemeContext";
+import { ContactForm } from "./ContactForm";
 
-export { AnchorButton, ThemeDarkContext }
+export { AnchorButton, ThemeContext, ContactForm }

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { ThemeDarkContext } from '../General/ThemeDarkContext'
+import { ThemeContext } from '../General/ThemeContext'
 
 export const ColorToggle = () => {
-  const themeContext = useContext(ThemeDarkContext)
+  const themeContext = useContext(ThemeContext)
 
   return (
     <>

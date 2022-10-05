@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ThemeIcon, Anchor } from '@mantine/core'
 
 interface IProps {
-  website: string
+  website?: string
   children: React.ReactNode
 }
 
@@ -20,7 +20,7 @@ export const SocialButtons = (props: IProps) => {
 }
 
 SocialButtons.propTypes = {
-
-  website: PropTypes.string.isRequired,
+  website: PropTypes.string,
+  children: PropTypes.element.isRequired
 }
 

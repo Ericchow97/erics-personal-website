@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import PropTypes from 'prop-types';
 import { ChevronRight, BrandGithub } from 'tabler-icons-react'
-import { ThemeDarkContext } from '../General/ThemeDarkContext';
+import { ThemeContext } from '../General/ThemeContext';
 import { useInView } from 'react-intersection-observer';
 
 interface IconsType {
@@ -59,7 +59,7 @@ interface IProps {
 }
 
 export const ProjectComponent = (props: IProps) => {
-  const { isDark } = useContext(ThemeDarkContext)
+  const { isDark } = useContext(ThemeContext)
 
   //TODO: require alt for pictues
   return (
@@ -93,7 +93,7 @@ export const ProjectComponent = (props: IProps) => {
             </button>
           </a>
           <a href={props.website} target='_blank' rel='noreferrer' className='project-button-link-wrapper'>
-            <button className='project-button website' disabled={!props.githubWebsite}>
+            <button className='project-button website'>
               <p>Visit Website</p>
               <ChevronRight />
             </button>

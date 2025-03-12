@@ -17,10 +17,9 @@ export const ProjectsCarousel = () => {
   const projects = [
     {
       name: "Trolley",
-      description: `Trolley is a Shopify App that adds a customizable cart drawer to the merchant's store. Trolley aims to provide
-      an efficient and simplistic solution with unlimited customization options. Trolley's cart drawer enables
-      faster checkout times and allows merchants to cross sell or upsell additional products based on their own
-      predefined rules.`,
+      description: `Trolley is a Shopify App that adds a customizable cart drawer to the merchant's store. Trolley's cart 
+      drawer enables faster checkout times and allows merchants to cross sell or upsell additional products based on their 
+      own predefined rules. Trolley aims to provide an efficient and simplistic solution with unlimited customization options.`,
       image: require('../../static/Trolley/trolley-logo.png'),
       alt: "Trolley App logo",
       website: 'https://apps.shopify.com/trolley-1',
